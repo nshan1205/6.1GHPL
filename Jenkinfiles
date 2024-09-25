@@ -1,0 +1,84 @@
+pipeline {
+    agent any
+ 
+    stages {
+        stage('Build') {
+            steps {
+                echo "Fetching the source code from GitHub"
+                echo "Compiling the code using Maven"
+                echo "Testing for demo"
+            }
+        }
+        stage('Unit and Integration Tests') {
+            steps {
+                echo "Running unit tests with JUnit"
+                echo "Running integration tests with Cucumber"
+            }
+            post {
+                success {
+                    echo "Unit and Integration Tests successful, sending success email..."
+                    emailext (
+                        to: "grnshan12@gmail.com",
+                        subject: "Test Status: Successful",
+                        body: "Unit and integration tests were successful!",
+                        attachLog: true
+                    )
+                }
+                failure {
+                    echo "Unit and Integration Tests failed, sending failure email..."
+                    emailext (
+                        to: "grnshan12@gmail.com",
+                        subject: "Test Status: Failed",
+                        body: "Unit and integration tests failed!",
+                        attachLog: true
+                    )
+                }
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                echo "Analyzing code with SonarQube"
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                echo "Scanning with OWASP ZAP"
+            }
+            post {
+                success {
+                    echo "Security scan successful, sending success email..."
+                    emailext (
+                        to: "grnshan12@gmail.com",
+                        subject: "Security Scan Status: Successful",
+                        body: "Security scan was successful!",
+                        attachLog: true
+                    )
+                }
+                failure {
+                    echo "Security scan failed, sending failure email..."
+                    emailext (
+                        to: "grnshan12@gmail.com",
+                        subject: "Security Scan Status: Failed",
+                        body: "Security scan failed!",
+                        attachLog: true
+                    )
+                }
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                echo "Deploying the application to AWS EC2"
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                echo "Testing with Selenium"
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                echo "Deploying the code to AWS EC2"
+            }
+        }
+    }
+}
