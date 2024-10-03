@@ -25,7 +25,7 @@ pipeline {
             post {
                 success {
                     emailext(
-                        to: 'grnshan12@gmail.com',
+                        to: 's224464146@deakin.edu.au',
                         subject: "Unit and Integration Tests - SUCCESS",
                         body: "The Unit and Integration Tests have completed successfully.",
                         attachLog: true
@@ -33,7 +33,7 @@ pipeline {
                 }
                 failure {
                     emailext(
-                        to: 'grnshan12@gmail.com',
+                        to: 's224464146@deakin.edu.au',
                         subject: "Unit and Integration Tests - FAILURE",
                         body: "The Unit and Integration Tests have failed.",
                         attachLog: true
@@ -57,7 +57,7 @@ pipeline {
             post {
                 success {
                     emailext(
-                        to: 'grnshan12@gmail.com',
+                        to: 's224464146@deakin.edu.au',
                         subject: "Security Scan - SUCCESS",
                         body: "The Security Scan has completed successfully.",
                         attachLog: true
@@ -65,7 +65,7 @@ pipeline {
                 }
                 failure {
                     emailext(
-                        to: 'grnshan12@gmail.com',
+                        to: 's224464146@deakin.edu.au',
                         subject: "Security Scan - FAILURE",
                         body: "The Security Scan has failed.",
                         attachLog: true
