@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DIRECTORYPATH = "/var/jenkins_home"
+        DIRECTORYPATH = "/path/to/code"
         TESTINGENVIRONMENT = "Staging"
         PRODUCTIONENVIRONMENT = "nshang-Production"
     }
