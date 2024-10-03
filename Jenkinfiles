@@ -95,8 +95,10 @@ pipeline {
     }
  
     post {
-        always {
-            echo "Pipeline execution completed"
+        success {
+            mail body: 'Attached the build log', subject: 'SIT223 - 6.1C Task - Build Successful', to: 'grnshan12@gmail.com'
         }
+        failure {
+            mail body: 'Attached the build log', subject: 'SIT223 - 6.1C Task - Build Failure', to 'grnshan12@gmail.com'
     }
 }
